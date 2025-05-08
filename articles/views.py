@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from articles.models import Article
+from django.forms.models import BaseModelForm
+from django.http import HttpResponse
 from django.views.generic import (
     CreateView,
     ListView,
@@ -22,6 +24,10 @@ class ArticleCreateView(CreateView):
     model = Article
     fields = ["title", "status", "content", "twitter_post"]
     success_url = reverse_lazy("home")
+
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        form.instance.creator = self.request.user
+        return super().form_valid(form)
 
 class ArticleUpdateView(UpdateView):
     template_name = "articles/article_update.html"
