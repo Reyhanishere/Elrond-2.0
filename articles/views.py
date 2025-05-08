@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from articles.models import Article
+from typing import Any
+from django.db.models.query import QuerySet
 from django.forms.models import BaseModelForm
 from django.http import HttpResponse
 from django.views.generic import (
@@ -9,17 +10,23 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from articles.models import Article
 
 # Create your views here.
 
-class ArticleListView(ListView):
+class ArticleListView(LoginRequiredMixin, ListView):
     template_name = "articles/home.html"
     model = Article
     context_object_name = "articles"
 
+    def get_queryset(self) -> QuerySet[Any]:
+        return Article.objects.filter(creator=self.request.user).order_by("-created_at")
+
+
     
 
-class ArticleCreateView(CreateView):
+class ArticleCreateView(LoginRequiredMixin, CreateView):
     template_name = "articles/article_create.html"
     model = Article
     fields = ["title", "status", "content", "twitter_post"]
@@ -29,16 +36,21 @@ class ArticleCreateView(CreateView):
         form.instance.creator = self.request.user
         return super().form_valid(form)
 
-class ArticleUpdateView(UpdateView):
+class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     template_name = "articles/article_update.html"
     model = Article
     fields = ["title", "status", "content", "twitter_post"]
     success_url = reverse_lazy("home")
     context_object_name = "article"
 
+    def test_func(self) -> bool | None:
+        return self.request.user == self.get_object().creator
+
 
 class ArticleDeleteView(DeleteView):
     template_name = "articles/article_delete.html"
     model = Article
     success_url = reverse_lazy("home")
-    context_object_name = "article"
+    
+    def test_func(self) -> bool | None:
+        return self.request.user == self.get_object().creator
