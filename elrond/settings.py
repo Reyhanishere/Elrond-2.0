@@ -46,10 +46,12 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     "allauth",
     "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.github"
 ]
 
 PROJECT_APPS = [
-    "articles.apps.AppConfig",
+    "articles.apps.ArticlesConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS
