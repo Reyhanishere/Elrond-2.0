@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load i18n %}
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -7,6 +8,23 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-[#F0F1C5]">
+  
+{% comment %} lan switch {% endcomment %}
+  <p>{% trans "Welcome to the site!" %}</p>
+
+<form action="{% url 'set_language' %}" method="post">
+    {% csrf_token %}
+    <select name="language" onchange="this.form.submit()">
+        {% get_current_language as LANGUAGE_CODE %}
+        {% get_available_languages as LANGUAGES %}
+        {% for lang_code, lang_name in LANGUAGES %}
+            <option value="{{ lang_code }}" {% if lang_code == LANGUAGE_CODE %}selected{% endif %}>
+                {{ lang_name }}
+            </option>
+        {% endfor %}
+    </select>
+</form>
+{% comment %} lan switch {% endcomment %}
 
 <nav>
   <ul>
@@ -23,6 +41,8 @@
     </li>
   </ul>
 </nav>
+
+
  
 {% block content %}
 

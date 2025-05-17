@@ -17,12 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import RedirectView
+from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("articles/", include("articles.urls")),
     path("accounts/", include("allauth.urls")),
     path("", RedirectView.as_view(pattern_name="home")),
-    path("__debug__/", include("debug_toolbar.urls"))
+    path("__debug__/", include("debug_toolbar.urls")),
+    path('i18n/', include('django.conf.urls.i18n')),  # <--- this handles language switching
  ]
 
+urlpatterns += i18n_patterns(
+    path('', include('articles.urls')),
+)

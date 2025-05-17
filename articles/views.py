@@ -13,6 +13,8 @@ from django.views.generic import (
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from articles.models import Article
 
+from django.utils.translation import gettext as _ # lan setting
+
 # Create your views here.
 
 class ArticleListView(LoginRequiredMixin, ListView):
@@ -22,7 +24,6 @@ class ArticleListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self) -> QuerySet[Any]:
         return Article.objects.filter(creator=self.request.user).order_by("-created_at")
-
 
     
 
@@ -54,3 +55,7 @@ class ArticleDeleteView(DeleteView):
     
     def test_func(self) -> bool | None:
         return self.request.user == self.get_object().creator
+    
+# lan setting
+def my_view(request):
+    message = _("This is a translated message.")
