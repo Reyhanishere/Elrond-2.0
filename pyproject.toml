@@ -1,5 +1,5 @@
 [project]
-name = "djangocourse"
+name = "elrond"
 version = "0.1.0"
 description = ""
 authors = [
@@ -8,11 +8,12 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-    "django-allauth[socialaccount] (>=65.8.0,<66.0.0)"
+    "django-allauth[socialaccount] (>=65.8.0,<66.0.0)",
+    "psycopg (>=3.2.9,<4.0.0)"
 ]
 
 [tool.poetry]
-packages = [{include = "djangocourse", from = "src"}]
+packages = [{include = "elrond", from = "src"}]
 
 [tool.poetry.dependencies]
 

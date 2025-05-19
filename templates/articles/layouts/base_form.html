@@ -1,4 +1,4 @@
-{% extends "app/base.html" %}
+{% extends "articles/base.html" %}
 
 {% block content %}
 {% endblock content %}
@@ -7,9 +7,9 @@
 <script>
 const contentMarkdown = new EasyMDE({
   element: document.getElementById("id_content"),
-  spellChecker: false,
-  status: false,
-  toolbar: false,
+  spellChecker: true,
+  status: true,
+  toolbar: true,
   forceSync: true
 });
 </script>
