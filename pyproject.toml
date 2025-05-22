@@ -9,7 +9,9 @@ readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "django-allauth[socialaccount] (>=65.8.0,<66.0.0)",
-    "psycopg (>=3.2.9,<4.0.0)"
+    "psycopg[binary] (>=3.2.9,<4.0.0)",
+    "dj-database-url (>=2.3.0,<3.0.0)",
+    "django-browser-reload (>=1.18.0,<2.0.0)"
 ]
 
 [tool.poetry]

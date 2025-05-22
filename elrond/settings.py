@@ -49,7 +49,8 @@ THIRD_PARTY_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
-    "allauth.socialaccount.providers.github"
+    "allauth.socialaccount.providers.github",
+    "django_browser_reload",
 ]
 
 PROJECT_APPS = [
@@ -66,8 +67,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "allauth.account.middleware.AccountMiddleware",
+    'allauth.account.middleware.AccountMiddleware',
     'django.middleware.locale.LocaleMiddleware', # added by chatgpt to support language switching
+    'django_browser_reload.middlewarw.BrowserReloadMiddleware',
 ]
 
 if DEBUG:
@@ -110,7 +112,13 @@ WSGI_APPLICATION = 'elrond.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(conn_max_age=600) 
+    # 'default': dj_database_url.config(conn_max_age=600) 
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'your_db_name',
+        'USER': 'your_db_user',
+        'PASSWORD': 'your_db_password',
+        'HOST': 'localhost',  # <- change to db if u want docker
+        'PORT': '5432',
 }
 
 AUTH_USER_MODEL = "articles.UserProfile"
@@ -167,6 +175,10 @@ LOCALE_PATHS = [
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static"
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

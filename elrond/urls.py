@@ -26,6 +26,7 @@ urlpatterns = [
     path("", RedirectView.as_view(pattern_name="home")),
     path("__debug__/", include("debug_toolbar.urls")),
     path('i18n/', include('django.conf.urls.i18n')),  # <--- this handles language switching
+    path("__reload__/", include("django_browser_reload.urls")),
  ]
 
 urlpatterns += i18n_patterns(

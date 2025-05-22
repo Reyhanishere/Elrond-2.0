@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 {% load i18n %}
 <html lang="en">
@@ -5,9 +6,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Elrond</title>
+  <link rel="stylesheet" href="{% static "output.css" %}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css">
   <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
+ 
 </head>
 <body class="bg-[#F0F1C5]">
   
@@ -28,7 +30,7 @@
 </form>
 {% comment %} lan switch {% endcomment %}
 
-<nav>
+<nav class="px-10 py-4 border-b bordr-gray-300 shadow-md">
   <ul>
     <li><a href="{% url 'home' %}">Articles</a></li>
     <li>
