@@ -1,30 +1,27 @@
-[project]
+[tool.poetry]
 name = "elrond"
 version = "0.1.0"
 description = ""
-authors = [
-    {name = "Reyhanishere",email = "reyhaneh.parviziyan@gmail.com"}
-]
+authors = ["Reyhanishere <reyhaneh.parviziyan@gmail.com>"]
 readme = "README.md"
-requires-python = ">=3.10"
-dependencies = [
-    "django-allauth[socialaccount] (>=65.8.0,<66.0.0)",
-    "psycopg[binary] (>=3.2.9,<4.0.0)",
-    "dj-database-url (>=2.3.0,<3.0.0)",
-    "django-browser-reload (>=1.18.0,<2.0.0)",
-    "django-widget-tweaks (>=1.5.0,<2.0.0)"
+packages = [
+    { include = "elrond" }
 ]
-
-[tool.poetry]
-packages = [{include = "elrond", from = "src"}]
 
 [tool.poetry.dependencies]
-
-django = "^5.0.1"
+python = ">=3.10,<3.13"
+django = "^4.2"  # Downgrade Django to match django-allauth
+"django-allauth" = { extras = ["socialaccount"], version = "^0.58.2" }
+psycopg = { extras = ["binary"], version = "^3.2.9" }
+"dj-database-url" = "^2.3.0"
+"django-browser-reload" = "^1.18.0"
+"django-widget-tweaks" = "^1.5.0"
+python-decouple = "^3.8"
+python-dotenv = "^1.1.0"
 
 [tool.poetry.group.dev.dependencies]
 django-debug-toolbar = "^5.2.0"
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
+requires = ["poetry-core>=2.0.0"]
 build-backend = "poetry.core.masonry.api"

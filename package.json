@@ -2,10 +2,36 @@
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/typography": "^0.5.16",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
     "tailwindcss": "^4.1.7"
   },
   "scripts": {
-    "dev": "tailwindcss -i ./static/input.css -o ./static/output.css --watch",
-    "build": "tailwindcss -i ./static/input.css -o ./static/output.css --minify"
-  }
+    "build:css": "npx tailwindcss@3.3.3 -i ./static/input.css -o ./static/output.css --watch"
+},
+
+  "name": "elrond-2.0",
+  "version": "1.0.0",
+  "description": "A platform to share medical knowledge, exchange ideas, and discuss issues.  \r Built with Django, HTML, CSS, JavaScript, and Tailwind CSS.",
+  "main": "tailwind.config.js",
+  "dependencies": {
+    "cssesc": "^3.0.0",
+    "lodash.castarray": "^4.4.0",
+    "lodash.isplainobject": "^4.0.6",
+    "lodash.merge": "^4.6.2",
+    "mini-svg-data-uri": "^1.4.4",
+    "postcss-selector-parser": "^6.0.10",
+    "util-deprecate": "^1.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Reyhanishere/Elrond-2.0.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Reyhanishere/Elrond-2.0/issues"
+  },
+  "homepage": "https://github.com/Reyhanishere/Elrond-2.0#readme"
 }
