@@ -1242,6 +1242,11 @@ select {
   border-color: transparent;
 }
 
+.border-gray-400 {
+  --tw-border-opacity: 1;
+  border-color: rgb(156 163 175 / var(--tw-border-opacity));
+}
+
 .bg-\[\#BF9264\] {
   --tw-bg-opacity: 1;
   background-color: rgb(191 146 100 / var(--tw-bg-opacity));
@@ -1683,6 +1688,21 @@ input[type="radio"]:focus {
 
 .allauth-form p:has(input[type="email"]) label {
   font-weight: 700;
+}
+
+.article-status-draft {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+}
+
+.article-status-published {
+  --tw-bg-opacity: 1;
+  background-color: rgb(187 247 208 / var(--tw-bg-opacity));
+}
+
+.article-status-inprogress {
+  --tw-bg-opacity: 1;
+  background-color: rgb(253 230 138 / var(--tw-bg-opacity));
 }
 
 .hover\:underline:hover {
